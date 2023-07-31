@@ -13,8 +13,16 @@ export class KrukStateManagerLibService {
    * then return that object if found. If not, it will make the api request and
    * then cache the result as it is returned
    *
+   * Options that can be provided:
+   *  fresh: if true, bypass the cache check
+   *  body: Http Request Body
+   *  headers: HttpHeaders
+   *
    * @param verb HTTP Request Verb
    * @param endpoint Full Endpoint of the api request
+   * @param options k_state_service_options
+   *
+   * @returns Observable of the http request, or the cached value wrapped in an observable
    */
   public makeRequest<T extends Object>(verb: http_verb, endpoint: string, options?: k_state_service_options): Observable<T> {
     const timerStart = performance.now();
